@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const port = 3000;
@@ -6,7 +7,8 @@ const router = require("./route");
 const db = require("./config");
 
 const PORT = "8000";
-
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
+app.use(bodyParser.json({ limit: "10mb" }));
 app.use("/imdb", cors(), router);
 
 const startServer = () => {
